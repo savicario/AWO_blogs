@@ -60,7 +60,7 @@ invisible(lapply(c("edr4r", "dplyr", "ggplot2", "sf", "leaflet"), library, chara
 
 ## Step 1: Retrieving SNOTEL Data
 
-In this exercise, we first retrieve data from a [SNOTEL (Snow Telemetry)](https://wcc.sc.egov.usda.gov/nwcc/yearcount?network=sntl&state=&counttype=statelist) station. SNOTEL is a network of automated monitoring stations operated by the USDA Natural Resources Conservation Service (NRCS) that measures snowpack, precipitation, temperature, and other meteorological variables across the western United States.
+To begin, we retrieve data from a [SNOTEL (Snow Telemetry)](https://wcc.sc.egov.usda.gov/nwcc/yearcount?network=sntl&state=&counttype=statelist) station. SNOTEL is a network of automated monitoring stations operated by the USDA Natural Resources Conservation Service (NRCS) that measures snowpack, precipitation, temperature, and other meteorological variables across the western United States.
 
 We will use [SNOTEL Station 927 (Snowslide Canyon)](https://wcc.sc.egov.usda.gov/nwcc/site?sitenum=927), located in the San Francisco Peaks near Flagstaff, Arizona. This station monitors Snow Water Equivalent (SWE or WTEQ), which represents the amount of water stored in the snowpack and is a key indicator of potential water availability.
 
@@ -338,7 +338,7 @@ head(nwm_daily)
 
 Soil moisture is a key variable linking snowmelt from the mountains to streamflow at the outlet. As snow melts, part of the water infiltrates into the soil, increasing soil moisture before contributing to runoff and river flow. Monitoring soil moisture helps us understand how snowmelt is partitioned between water stored in the soil and water that eventually reaches the river.
 
-In this exercise, we use soil moisture data from NASA's [Soil Moisture Active Passive (SMAP)](https://smap.jpl.nasa.gov/) mission. SMAP data are available through the AWO in the [SMAP_SPL4SMGP collection](https://asu-awo-pygeoapi-864861257574.us-south1.run.app/collections/SMAP_SPL4SMGP). The collection includes both surface soil moisture (top 5 cm) and root-zone soil moisture. In this exercise, we retrieve the root-zone soil moisture for the entire HUC8 watershed using **`edr4r`**. The retrieved data are then averaged across all pixels within the HUC8 to produce a daily basin-mean soil moisture time series.
+We use soil moisture data from NASA's [Soil Moisture Active Passive (SMAP)](https://smap.jpl.nasa.gov/) mission. SMAP data are available through the AWO in the [SMAP_SPL4SMGP collection](https://asu-awo-pygeoapi-864861257574.us-south1.run.app/collections/SMAP_SPL4SMGP). The collection includes both surface soil moisture (top 5 cm) and root-zone soil moisture. In this exercise, we retrieve the root-zone soil moisture for the entire HUC8 watershed using **`edr4r`**. The retrieved data are then averaged across all pixels within the HUC8 to produce a daily basin-mean soil moisture time series.
 
 ```{r}
 # Retrieve SMAP root-zone soil moisture for the HUC8 watershed and time period
