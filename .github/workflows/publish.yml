@@ -4,7 +4,15 @@ on:
   push:
     branches:
       - main
+    paths:
+      - "blog1/**/*.qmd"
+      - "blog2/**/*.qmd"
+      - ".github/workflows/render_blogs.yml"
   workflow_dispatch:
+
+concurrency:
+  group: render-blogs
+  cancel-in-progress: true
 
 jobs:
   render:
@@ -64,7 +72,7 @@ jobs:
           git add blog2/blog2.html
           git add blog2/blog2_files || true
 
-          git commit -m "Render blogs" || echo "No changes to commit"
+          git diff --cached --quiet && echo "No changes to commit" && exit 0
 
-          git pull --rebase origin main
+          git commit -m "Render blogs"
           git push origin main
