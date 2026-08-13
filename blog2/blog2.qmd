@@ -39,6 +39,16 @@ Beyond the analysis in this tutorial, the Arizona Water Observatory provides acc
 
 ![AWO dashboard](images/AWO.png){#fig-awo-dashboard width="100%" fig-align="center"}
 
+Watch the video below for a step-by-step walkthrough of the exercise.
+
+<iframe width="560" height="315"
+src="https://www.youtube.com/watch?v=WRFzIMFNGs8"
+title="YouTube video player"
+frameborder="0"
+allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+allowfullscreen>
+</iframe>
+
 ## Getting Started
 
 This exercise uses **R** as the programming language and several packages that help retrieve environmental data and perform geospatial analysis:
