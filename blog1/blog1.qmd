@@ -55,6 +55,8 @@ This exercise uses **R** as the programming language and several packages that h
 
 If you do not have these packages installed, you can install them using `install.packages()`. Once the packages are installed, load them using `library()`
 
+https://www.youtube.com/watch?v=shc9lVOYXIY
+
 ```{r}
 #| warning: false
 #| message: false
