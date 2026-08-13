@@ -1,0 +1,61 @@
+name: Render Blog 1
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up R
+        uses: r-lib/actions/setup-r@v2
+
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            libudunits2-dev \
+            libgdal-dev \
+            libgeos-dev \
+            libproj-dev \
+            libcurl4-openssl-dev \
+            libssl-dev \
+            libxml2-dev
+
+      - name: Install R dependencies
+        uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          extra-packages: |
+            any::knitr
+            any::rmarkdown
+            any::edr4r
+            any::dplyr
+            any::sf
+            any::ggplot2
+            any::leaflet
+            any::lubridate
+
+      - name: Set up Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+
+      - name: Render Blog 1
+        run: quarto render blog1/blog1.qmd
+
+      - name: Commit rendered HTML
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add blog1/blog1.html
+          git add blog1/blog1_files || true
+          git commit -m "Render blog1" || echo "No changes to commit"
+          git push
