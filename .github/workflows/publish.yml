@@ -43,6 +43,7 @@ jobs:
             any::sf
             any::ggplot2
             any::leaflet
+            any::lubridate
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
