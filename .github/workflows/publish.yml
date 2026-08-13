@@ -1,12 +1,13 @@
-name: Publish Quarto Website
+name: Render Blog 2
 
 on:
   push:
-    branches: main
+    branches:
+      - main
   workflow_dispatch:
 
 jobs:
-  build-deploy:
+  render:
     runs-on: ubuntu-latest
 
     permissions:
@@ -19,12 +20,13 @@ jobs:
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
 
-      - name: Render Quarto
-        run: quarto render
+      - name: Render Blog 2
+        run: quarto render blog2/blog2.qmd
 
-      - name: Publish to GitHub Pages
-        uses: quarto-dev/quarto-actions/publish@v2
-        with:
-          target: gh-pages
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Commit rendered HTML
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add blog2/blog2.html blog2/blog2_files || true
+          git commit -m "Render blog2" || echo "No changes to commit"
+          git push
