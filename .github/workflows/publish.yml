@@ -20,6 +20,10 @@ jobs:
       - name: Set up R
         uses: r-lib/actions/setup-r@v2
 
+      - name: Install R packages
+        run: |
+          Rscript -e 'install.packages(c("knitr", "rmarkdown"), repos="https://cloud.r-project.org")'
+
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
 
@@ -30,6 +34,7 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add blog2/blog2.html blog2/blog2_files || true
+          git add blog2/blog2.html
+          git add blog2/blog2_files || true
           git commit -m "Render blog2" || echo "No changes to commit"
           git push
