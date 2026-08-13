@@ -1,4 +1,4 @@
-name: Render Blog 1
+name: Render Blogs
 
 on:
   push:
@@ -51,11 +51,20 @@ jobs:
       - name: Render Blog 1
         run: quarto render blog1/blog1.qmd
 
+      - name: Render Blog 2
+        run: quarto render blog2/blog2.qmd
+
       - name: Commit rendered HTML
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
           git add blog1/blog1.html
           git add blog1/blog1_files || true
-          git commit -m "Render blog1" || echo "No changes to commit"
-          git push
+          git add blog2/blog2.html
+          git add blog2/blog2_files || true
+
+          git commit -m "Render blogs" || echo "No changes to commit"
+
+          git pull --rebase origin main
+          git push origin main
